@@ -36,9 +36,13 @@ config:
   useDefault: true
 ```
 
-Opinionated Declarative Example with s3 + oauth:
+## Opinionated Declarative Homelab Example (S3 + PocketID oauth)
+
+This is vaguely how I have it set up in my homelab.
 
 ```
+# values.yaml
+
 env:
   TRUST_PROXY: true
 
@@ -93,6 +97,21 @@ config:
       #Turn off for backends that do not support checksum (e.g. B2).
       useChecksum: "true"
 ```
+
+Secrets are being managed with [helm-secrets](https://github.com/jkroepke/helm-secrets)
+
+```
+# secrets.yaml
+config:
+  inline:
+    oauth:
+      oidc-clientId:
+      oidc-clientSecret:
+    s3:
+      key:
+      secret:
+```
+
 # pingvin-share-x
 
 ![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.21.0](https://img.shields.io/badge/AppVersion-v1.21.0-informational?style=flat-square)

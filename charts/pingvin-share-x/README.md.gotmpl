@@ -19,8 +19,28 @@ Declarative config:
 {{ .Files.Get "declarative.yaml" }}
 ```
 
-Opinionated Declarative Example with s3 + oauth:
+## Opinionated Declarative Homelab Example (S3 + PocketID oauth)
+
+This is vaguely how I have it set up in my homelab.
 
 ```
 {{ .Files.Get "declarative-full-example.yaml" }}
 ```
+
+Secrets are being managed with [helm-secrets](https://github.com/jkroepke/helm-secrets)
+
+```
+# secrets.yaml
+config:
+  inline:
+    oauth:
+      oidc-clientId: 
+      oidc-clientSecret: 
+    s3:
+      key: 
+      secret:
+```
+
+
+
+
