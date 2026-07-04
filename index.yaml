@@ -3,6 +3,16 @@ entries:
   pingvin-share-x:
   - apiVersion: v2
     appVersion: v1.21.0
+    created: "2026-07-04T21:06:59.383820015Z"
+    description: A Helm chart for Pingvin Share X
+    digest: fffaeef2d8677d6bd347bd90c2a8b52e718ad78ca7c93dc5f7f8df054d9f6c92
+    name: pingvin-share-x
+    type: application
+    urls:
+    - https://github.com/Viyi/pingvin-share-x/releases/download/pingvin-share-x-1.0.4/pingvin-share-x-1.0.4.tgz
+    version: 1.0.4
+  - apiVersion: v2
+    appVersion: v1.21.0
     created: "2026-07-04T18:11:20.474078783Z"
     description: A Helm chart for Pingvin Share X
     digest: d05ddd143f3bf1affd9e01c3acd22d17a20ef8436b5c28fd02c5b2d9a7586491
@@ -41,4 +51,4 @@ entries:
     urls:
     - https://github.com/Viyi/pingvin-share-x/releases/download/pingvin-share-x-1.0.0/pingvin-share-x-1.0.0.tgz
     version: 1.0.0
-generated: "2026-07-04T18:11:20.474095585Z"
+generated: "2026-07-04T21:06:59.383845473Z"
