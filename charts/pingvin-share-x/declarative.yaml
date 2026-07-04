@@ -1,0 +1,18 @@
+# Declarative config settings for pingvin, enabling will not allow ui configuration
+# https://smp46.github.io/pingvin-share-x/setup/configuration
+config:
+  enabled: false
+
+  # Option 1: existing config. create a secret in the charts namespace with your config
+  # expects a config.yaml to be available
+  existingConfig: false
+
+  # Option 2a: Inline config
+  # You can define your entire config here or just use it for secrets if you enable useDefault
+  inline:
+    general:
+      appUrl: "http://chart-example.local"
+
+  # Option 2b: apply default config and map inline over it.
+  # https://github.com/smp46/pingvin-share-x/blob/main/config.example.yaml
+  useDefault: true

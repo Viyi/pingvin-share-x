@@ -1,0 +1,21 @@
+{{ template "chart.header" . }}
+{{ template "chart.description" . }}
+
+{{ template "chart.versionBadge" . }}{{ template "chart.typeBadge" . }}{{ template "chart.appVersionBadge" . }}
+
+
+## Installing the Chart
+
+To install the chart with the release name `pingvin`:
+
+```console
+$ helm repo add pingvin-share-x https://viyi.github.io/pingvin-share-x/
+$ helm install pingvin pingvin-share-x/{{ template "chart.name" . }}
+```
+
+Declarative config:
+
+```
+{{ .Files.Get "declarative.yaml" }}
+```
+
