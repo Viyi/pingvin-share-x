@@ -3,10 +3,8 @@ on:
   push:
     branches:
       - main
-    tags:
-      - "v*"
     paths:
-      - "charts/**"
+      - "charts/**/Chart.yaml"
 
 jobs:
   publish:
