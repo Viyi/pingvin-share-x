@@ -1,0 +1,2 @@
+[tools]
+"aqua:helm/chart-releaser" = "latest"
