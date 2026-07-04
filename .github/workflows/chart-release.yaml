@@ -4,9 +4,9 @@ on:
     branches:
       - main
     tags:
-      - "chart-*"
+      - "v*"
     paths:
-      - "config/helm-chart/**"
+      - "."
 
 jobs:
   publish:
