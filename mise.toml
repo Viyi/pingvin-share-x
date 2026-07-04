@@ -1,3 +1,6 @@
 [tools]
 helm-docs = "latest"
 prek = "latest"
+
+[hooks]
+postinstall = "prek install"
