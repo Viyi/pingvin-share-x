@@ -19,7 +19,7 @@ Declarative config:
 # Declarative config settings for pingvin, enabling will not allow ui configuration
 # https://smp46.github.io/pingvin-share-x/setup/configuration
 config:
-  enabled: false
+  enabled: true
 
   # Option 1: existing config. create a secret in the charts namespace with your config
   # expects a config.yaml to be available
@@ -36,6 +36,63 @@ config:
   useDefault: true
 ```
 
+Opinionated Declarative Example with s3 + oauth:
+
+```
+env:
+  TRUST_PROXY: true
+
+httpRoute:
+  enabled: true
+  hostnames:
+    - pingvin.local
+  parentRefs:
+  - group: gateway.networking.k8s.io
+    kind: Gateway
+    name: lan-gateway
+    namespace: envoy-gateway-system
+
+config:
+  enabled: true
+
+  useDefault: true
+
+  inline:
+    general:
+      appName: Arthur's Files!
+      appUrl: "https://pingvin.local"
+      showHomePage: "false"
+    share:
+      allowRegistration: "false"
+      maxSize: "100000000000"
+    oauth:
+      oidc-enabled: "true"
+      #Discovery URI of the OpenID Connect OAuth app
+      oidc-discoveryUri: "https://pid.local/.well-known/openid-configuration"
+      #Whether the “Sign out” button will sign out from the OpenID Connect provider
+      oidc-signOut: "True"
+      #Scopes which should be requested from the OpenID Connect provider.
+      oidc-scope: openid email profile groups
+     
+      oidc-rolePath: "groups"
+      #Role required for general access. Must be present in a user’s roles for them to log in. Leave it blank if you don't know what this config is.
+      oidc-roleGeneralAccess: "pingvin_user"
+      #Role required for administrative access. Must be present in a user’s roles for them to access the admin panel. Leave it blank if you don't know what this config is.
+      oidc-roleAdminAccess: "pingvin_admin"
+    s3:
+      #Whether S3 should be used to store the shared files instead of the local file system.
+      enabled: "true"
+      #The URL of the S3 bucket.
+      endpoint: "http://s3.local"
+      #The region of the S3 bucket.
+      region: "in-my-apartment"
+      #The name of the S3 bucket.
+      bucketName: "pingvin"
+      #The default path which should be used to store the files in the S3 bucket.
+      bucketPath: ""
+      #Turn off for backends that do not support checksum (e.g. B2).
+      useChecksum: "true"
+```
 # pingvin-share-x
 
 ![Version: 1.0.3](https://img.shields.io/badge/Version-1.0.3-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: v1.21.0](https://img.shields.io/badge/AppVersion-v1.21.0-informational?style=flat-square)

@@ -1,7 +1,7 @@
 # Declarative config settings for pingvin, enabling will not allow ui configuration
 # https://smp46.github.io/pingvin-share-x/setup/configuration
 config:
-  enabled: false
+  enabled: true
 
   # Option 1: existing config. create a secret in the charts namespace with your config
   # expects a config.yaml to be available

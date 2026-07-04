@@ -2,6 +2,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: {{ include "..fullname" . }}
+  annotations:
+    reloader.stakater.com/auto: "true"
   labels:
     {{- include "..labels" . | nindent 4 }}
 spec:
