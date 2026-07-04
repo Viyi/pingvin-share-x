@@ -1,0 +1,26 @@
+{{- if and .Values.config.enabled (not .Values.config.existingConfig) }}
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "..fullname" . }}-config
+  labels:
+    {{- include "..labels" . | nindent 4 }}
+type: Opaque
+stringData:
+  config.yaml: |
+    {{- /* 1. Load the base YAML file and render any internal template logic */ -}}
+    {{- $baseString := .Files.Get "files/default-config.yaml" -}}
+    {{- $baseRendered := tpl $baseString . -}}
+    
+    {{- /* 2. Convert the rendered string into a Go map layout */ -}}
+    {{- $baseMap := fromYaml $baseRendered -}}
+    
+    {{- /* 3. Retrieve user inline overrides */ -}}
+    {{- $inlineMap := .Values.config.inline -}}
+    
+    {{- /* 4. Deep-merge inline overrides directly into the base configuration map */ -}}
+    {{- $mergedMap := merge $inlineMap $baseMap -}}
+    
+    {{- /* 5. Output the merged map cleanly back into raw YAML string format */ -}}
+    {{- toYaml $mergedMap | nindent 4 }}
+{{- end }}
