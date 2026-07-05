@@ -22,8 +22,9 @@ spec:
   {{- end }}
   rules:
     {{- range .Values.httpRoute.rules }}
+    - name: {{ .name | default "default" }}
     {{- with .matches }}
-    - matches:
+      matches:
       {{- toYaml . | nindent 8 }}
     {{- end }}
     {{- with .timeouts }}
